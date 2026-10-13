@@ -3,7 +3,6 @@ import Container from "@/components/ui/Container";
 import Pic from "@/components/ui/Pic";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { ArrowRight } from "@/components/ui/Icons";
-import { cn } from "@/lib/utils";
 
 /**
  * Thẻ bộ sưu tập trên trang /bo-suu-tap: thẻ lớn, ảnh bìa tràn, góc bo lớn. Rê chuột: ảnh phóng nhẹ,
@@ -30,10 +29,7 @@ export default function CollectionCards({ page, collections, concepts, ui }) {
               <Link
                 key={c.slug}
                 href={`/bo-suu-tap/${c.slug}`}
-                className={cn(
-                  "reveal group relative block overflow-hidden rounded-[2rem] bg-blush-100 shadow-card transition-shadow duration-500 hover:shadow-soft",
-                  i % 2 === 1 && "md:mt-16",
-                )}
+                className="reveal group relative block overflow-hidden rounded-[2rem] bg-blush-100 shadow-card transition-shadow duration-500 hover:shadow-soft"
                 style={{ "--reveal-delay": `${i * 120}ms` }}
               >
                 <div className="relative aspect-[4/5] sm:aspect-[5/6]">
