@@ -114,7 +114,9 @@ export default function Contact({ contact, site, ui }) {
           className="reveal mt-6 text-[11px] tracking-[0.25em] text-white/35 uppercase"
           style={{ "--reveal-delay": "500ms" }}
         >
-          {site.hoursShort} · {site.addressShort}
+          <span className="block sm:inline">{site.hoursShort}</span>
+          <span className="hidden sm:inline"> · </span>
+          <span className="mt-1 block sm:mt-0 sm:inline">{site.addressShort}</span>
         </p>
       </div>
     </section>

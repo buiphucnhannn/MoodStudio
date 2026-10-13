@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Màn hình cao (điện thoại đời mới ≥ 740px): dùng để giãn bố cục cho cân, vd. popup đặt lịch — max-sm:tall:py-3 */
+@custom-variant tall (@media (min-height: 740px));
+
 /* ---------------------------------------------------------------------------
  * Design tokens — MOOD Studio: hồng pastel · trắng kem · be. Feminine, Elegant, Artistic.
  * Đổi màu/font tại đây; mọi class cream-*, blush-*, rose*, ink* sẽ tự cập nhật.

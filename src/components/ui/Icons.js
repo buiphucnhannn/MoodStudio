@@ -99,6 +99,12 @@ export const Camera = ({ className = "h-5 w-5" }) => (
     <circle cx="12" cy="13" r="3.5" />
   </svg>
 );
+export const Chat = ({ className = "h-5 w-5" }) => (
+  <svg {...base({ className, strokeWidth: 1.8 })}>
+    <path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12Z" />
+    <path d="M8.5 12h.01M12 12h.01M15.5 12h.01" strokeWidth="2.4" />
+  </svg>
+);
 export const Calendar = ({ className = "h-5 w-5" }) => (
   <svg {...base({ className })}>
     <rect x="3" y="5" width="18" height="16" rx="2" />

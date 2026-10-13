@@ -97,14 +97,16 @@ export default function Pricing({ pricing, ui, showAddons = true, tone = "cream"
               <h3 className="font-serif text-[1.8rem] leading-tight text-ink">Dịch vụ thêm</h3>
               <p className="max-w-md text-xs text-ink-muted md:text-right">{pricing.note}</p>
             </div>
-            <dl className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <dl className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
               {pricing.addons.map((a) => (
                 <div
                   key={a.name}
-                  className="flex flex-col justify-between gap-4 rounded-[1.25rem] border border-rose/15 bg-white/70 p-6 backdrop-blur transition-colors hover:border-rose/40"
+                  className="flex flex-col justify-between gap-4 rounded-[1.25rem] border border-rose/15 bg-white/70 p-4 backdrop-blur transition-colors hover:border-rose/40 sm:p-6"
                 >
-                  <dt className="text-sm leading-relaxed text-ink-soft">{a.name}</dt>
-                  <dd className="font-serif text-2xl text-ink">
+                  <dt className="text-[13px] leading-snug text-ink-soft sm:text-sm sm:leading-relaxed">
+                    {a.name}
+                  </dt>
+                  <dd className="font-serif text-xl leading-tight text-ink sm:text-2xl">
                     {a.contact ? (
                       // "Liên hệ": mở popup đặt lịch / liên hệ; rê chuột chỉ đổi màu chữ
                       <button

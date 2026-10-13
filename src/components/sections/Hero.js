@@ -117,7 +117,7 @@ export default function Hero({ hero, ui }) {
           </p>
           <div
             className={cn(
-              "mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start",
+              "mx-auto mt-8 flex w-full max-w-[300px] flex-col items-stretch gap-3 sm:mx-0 sm:max-w-none sm:flex-row sm:items-center sm:justify-center lg:justify-start",
               anim("[animation:fadeUp_1s_1.85s_both]"),
             )}
           >

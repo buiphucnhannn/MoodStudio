@@ -117,11 +117,11 @@ export default function BookingForm({
   }
 
   return (
-    <form onSubmit={submit} className="space-y-3">
-      <div className="grid gap-3 sm:grid-cols-2">
+    <form onSubmit={submit} className="space-y-2.5 sm:space-y-3 max-sm:tall:space-y-3.5">
+      <div className="grid gap-2.5 sm:grid-cols-2 sm:gap-3 max-sm:tall:gap-3">
         <input
           required
-          className="field"
+          className="field max-sm:py-2.5 max-sm:tall:py-3.5"
           placeholder={f.name}
           value={form.name}
           onChange={set("name")}
@@ -129,7 +129,7 @@ export default function BookingForm({
         />
         <input
           required
-          className="field"
+          className="field max-sm:py-2.5 max-sm:tall:py-3.5"
           type="tel"
           placeholder={f.phone}
           value={form.phone}
@@ -137,18 +137,27 @@ export default function BookingForm({
           autoComplete="tel"
         />
       </div>
-      <div className="grid grid-cols-[1.4fr_1fr] gap-3 sm:grid-cols-2">
+      <div className="grid grid-cols-[1.4fr_1fr] gap-2.5 sm:grid-cols-2 sm:gap-3 max-sm:tall:gap-3">
         <label className="relative block">
           <span className="absolute top-1.5 left-4 text-[11px] tracking-wider text-ink-muted uppercase lg:text-[10px]">
             {f.date}
           </span>
-          <input className="field pt-5" type="date" value={form.date} onChange={set("date")} />
+          <input
+            className="field pt-5 max-sm:pt-[18px] max-sm:pb-2 max-sm:tall:pt-6 max-sm:tall:pb-3"
+            type="date"
+            value={form.date}
+            onChange={set("date")}
+          />
         </label>
         <label className="relative block">
           <span className="absolute top-1.5 left-4 text-[11px] tracking-wider text-ink-muted uppercase lg:text-[10px]">
             {f.people}
           </span>
-          <select className="field pt-5" value={form.people} onChange={set("people")}>
+          <select
+            className="field pt-5 max-sm:pt-[18px] max-sm:pb-2 max-sm:tall:pt-6 max-sm:tall:pb-3"
+            value={form.people}
+            onChange={set("people")}
+          >
             {["1", "2", "3-5", "6+"].map((n) => (
               <option key={n} value={n}>
                 {n}
@@ -157,12 +166,16 @@ export default function BookingForm({
           </select>
         </label>
       </div>
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid grid-cols-2 gap-2.5 sm:gap-3 max-sm:tall:gap-3">
         <label className="relative block">
-          <span className="absolute top-1.5 left-4 text-[11px] tracking-wider text-ink-muted uppercase lg:text-[10px]">
+          <span className="absolute top-1.5 left-4 text-[11px] tracking-wider text-ink-muted uppercase max-sm:left-3 lg:text-[10px]">
             {f.concept}
           </span>
-          <select className="field pt-5" value={form.concept} onChange={set("concept")}>
+          <select
+            className="field pt-5 max-sm:pt-[18px] max-sm:pr-7 max-sm:pb-2 max-sm:pl-3 max-sm:text-[13px] max-sm:tall:pt-6 max-sm:tall:pb-3"
+            value={form.concept}
+            onChange={set("concept")}
+          >
             <option value="">{f.undecided}</option>
             {concepts.map((c) => (
               <option key={c.slug} value={c.slug}>
@@ -172,10 +185,14 @@ export default function BookingForm({
           </select>
         </label>
         <label className="relative block">
-          <span className="absolute top-1.5 left-4 text-[11px] tracking-wider text-ink-muted uppercase lg:text-[10px]">
+          <span className="absolute top-1.5 left-4 text-[11px] tracking-wider text-ink-muted uppercase max-sm:left-3 lg:text-[10px]">
             {f.plan}
           </span>
-          <select className="field pt-5" value={form.plan} onChange={set("plan")}>
+          <select
+            className="field pt-5 max-sm:pt-[18px] max-sm:pr-7 max-sm:pb-2 max-sm:pl-3 max-sm:text-[13px] max-sm:tall:pt-6 max-sm:tall:pb-3"
+            value={form.plan}
+            onChange={set("plan")}
+          >
             <option value="">{f.undecided}</option>
             {plans.map((p) => (
               <option key={p.slug} value={p.slug}>
@@ -186,7 +203,12 @@ export default function BookingForm({
         </label>
       </div>
       <textarea
-        className={cn("field resize-none", compact ? "min-h-[72px]" : "min-h-[110px]")}
+        className={cn(
+          "field resize-none",
+          compact
+            ? "min-h-[60px] max-sm:py-2.5 sm:min-h-[72px] max-sm:tall:min-h-[96px] max-sm:tall:py-3.5"
+            : "min-h-[110px]",
+        )}
         placeholder={f.note}
         value={form.note}
         onChange={set("note")}
@@ -195,20 +217,20 @@ export default function BookingForm({
       <button
         type="submit"
         disabled={state === "sending"}
-        className="inline-flex w-full items-center justify-center rounded-full bg-rose px-6 py-3.5 text-sm font-medium text-white shadow-card transition hover:bg-rose-deep disabled:opacity-60"
+        className="inline-flex w-full items-center justify-center rounded-full bg-rose px-6 py-3 text-sm font-medium text-white shadow-card transition hover:bg-rose-deep disabled:opacity-60 max-sm:tall:py-4 sm:py-3.5"
       >
         {state === "sending" ? f.sending : f.submit}
       </button>
 
       <p
         className={cn(
-          "text-center text-[12px] leading-relaxed",
+          "text-center text-[11.5px] leading-relaxed sm:text-[12px]",
           state === "error" ? "text-rose-deep" : "text-ink-muted",
         )}
       >
         {state === "error" ? f.error : copied ? "Đã sao chép nội dung." : f.privacy}
       </p>
-      <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[12px] text-ink-muted">
+      <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11.5px] text-ink-muted sm:text-[12px]">
         <span>{f.or}</span>
         <button
           type="button"

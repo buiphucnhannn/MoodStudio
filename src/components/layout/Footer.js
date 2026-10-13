@@ -17,7 +17,7 @@ export default function Footer({ site, nav, ui, footer }) {
       <div className="pointer-events-none absolute -top-32 -right-24 h-[420px] w-[420px] rounded-full bg-rose/25 blur-[140px]" />
 
       <Container wide className="relative py-12 lg:py-14">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1.3fr_0.7fr]">
+        <div className="grid gap-10 md:grid-cols-2 md:gap-12 lg:grid-cols-[1.2fr_1fr_1.3fr_0.7fr]">
           <div>
             <Link
               href="/"
@@ -83,7 +83,7 @@ export default function Footer({ site, nav, ui, footer }) {
             </ul>
           </div>
 
-          <div>
+          <div className="max-md:order-4">
             <h4 className="mb-5 font-serif text-xl text-white">{ui.map}</h4>
             <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-soft">
               <iframe
@@ -97,9 +97,9 @@ export default function Footer({ site, nav, ui, footer }) {
             </div>
           </div>
 
-          <div className="text-center md:text-left">
+          <div className="max-md:order-3">
             <h4 className="mb-5 font-serif text-xl text-white">{ui.menu}</h4>
-            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm text-cream/75 md:block md:space-y-3">
+            <ul className="grid grid-cols-2 gap-x-6 text-sm text-cream/75 md:block md:space-y-3">
               {nav.map((i) => (
                 <li key={i.href}>
                   <Link

@@ -176,7 +176,7 @@ export default function Navbar({ nav, ui, phone, phoneRaw }) {
             type="button"
             data-booking
             onClick={() => setOpen(false)}
-            className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-4 text-sm font-medium text-white"
+            className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-[#8a5872] px-6 py-4 text-sm font-medium text-white shadow-card"
           >
             {ui.bookFree} <ArrowRight className="h-4 w-4" />
           </button>

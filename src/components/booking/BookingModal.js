@@ -50,7 +50,7 @@ export default function BookingModal({ booking, concepts, plans, site }) {
 
   return (
     <div
-      className="fixed inset-0 z-[150] flex items-end justify-center sm:items-center sm:p-6"
+      className="fixed inset-0 z-[150] flex items-center justify-center p-3 sm:p-6"
       role="dialog"
       aria-modal="true"
       aria-label={booking.title}
@@ -60,7 +60,7 @@ export default function BookingModal({ booking, concepts, plans, site }) {
         onClick={close}
       />
 
-      <div className="relative grid max-h-[92svh] w-full max-w-[980px] [animation:popIn_.55s_cubic-bezier(.22,1,.36,1)_both] overflow-hidden rounded-t-[1.75rem] bg-cream shadow-soft sm:rounded-[1.75rem] lg:grid-cols-[0.42fr_0.58fr] lg:rounded-[2rem]">
+      <div className="relative grid max-h-[calc(100svh-1.5rem)] w-full max-w-[980px] [animation:popIn_.55s_cubic-bezier(.22,1,.36,1)_both] overflow-hidden rounded-[1.75rem] bg-cream shadow-soft sm:max-h-[92svh] lg:grid-cols-[0.42fr_0.58fr] lg:rounded-[2rem]">
         {/* Cột ảnh (desktop) */}
         <div className="relative hidden lg:block">
           <Pic
@@ -90,12 +90,8 @@ export default function BookingModal({ booking, concepts, plans, site }) {
         {/* Cột form — data-lenis-prevent: Lenis không chặn cuộn bên trong popup */}
         <div
           data-lenis-prevent
-          className="relative no-scrollbar overflow-y-auto overscroll-contain px-5 pt-3 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-9 sm:py-8"
+          className="relative no-scrollbar overflow-y-auto overscroll-contain px-5 pt-6 pb-5 sm:px-9 sm:py-8 tall:pt-8 tall:pb-7"
         >
-          <span
-            aria-hidden
-            className="mx-auto mb-4 block h-1 w-10 rounded-full bg-ink/15 sm:hidden"
-          />
           <button
             onClick={close}
             aria-label="Đóng"
@@ -105,16 +101,16 @@ export default function BookingModal({ booking, concepts, plans, site }) {
           </button>
 
           <div className="flex flex-col items-center text-center">
-            <Logo className="text-lg" />
-            <h3 className="mt-3 font-serif text-[1.65rem] leading-tight text-ink sm:mt-4 sm:text-[2.2rem]">
+            <Logo className="text-base sm:text-lg" />
+            <h3 className="mt-1.5 font-serif text-[1.5rem] leading-tight text-ink sm:mt-4 sm:text-[2.2rem] max-sm:tall:mt-2.5 max-sm:tall:text-[1.75rem]">
               {booking.title}
             </h3>
-            <p className="mt-2 max-w-sm text-[13.5px] leading-relaxed text-ink-soft">
+            <p className="mt-1 max-w-sm text-[12.5px] leading-snug text-ink-soft sm:mt-2 sm:text-[13.5px] sm:leading-relaxed">
               {booking.desc}
             </p>
           </div>
 
-          <div className="mt-5 sm:mt-6">
+          <div className="mt-4 sm:mt-6 tall:mt-6">
             <BookingForm
               key={`${preset.concept}-${preset.plan}`}
               booking={booking}

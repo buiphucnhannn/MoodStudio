@@ -455,7 +455,7 @@ export const booking = {
     people: "Số người",
     concept: "Concept",
     plan: "Gói chụp",
-    undecided: "Chưa quyết định",
+    undecided: "Chưa chọn",
     note: "Ghi chú (ý tưởng, trang phục, câu hỏi…)",
     submit: "Gửi yêu cầu đặt lịch",
     sending: "Đang gửi…",

@@ -44,22 +44,22 @@ export default function ConceptsHero({ hero, ui }) {
               {hero.desc}
             </p>
             <div
-              className="reveal mt-8 flex flex-wrap items-center gap-3"
+              className="reveal mt-8 flex max-w-[300px] flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center"
               style={{ "--reveal-delay": "350ms" }}
             >
               <button
                 type="button"
                 data-booking
-                className="group inline-flex items-center gap-3 rounded-full bg-ink py-1.5 pr-1.5 pl-6 text-sm font-medium text-white shadow-card transition hover:bg-plum"
+                className="group relative inline-flex items-center justify-center gap-3 rounded-full bg-ink py-1.5 pr-1.5 pl-6 text-sm font-medium text-white shadow-card transition hover:bg-plum max-sm:min-h-12 max-sm:pr-14 sm:justify-start"
               >
                 {ui.book}
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-rose text-white transition-transform group-hover:translate-x-0.5">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-rose text-white transition-transform group-hover:translate-x-0.5 max-sm:absolute max-sm:right-1.5">
                   <ArrowRight className="h-4 w-4" />
                 </span>
               </button>
               <a
                 href="#danh-sach"
-                className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-6 py-3.5 text-sm font-medium text-ink transition hover:border-ink hover:bg-ink hover:text-white"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 px-6 py-3.5 text-sm font-medium text-ink transition hover:border-ink hover:bg-ink hover:text-white"
               >
                 {hero.ctaSecondary}
               </a>

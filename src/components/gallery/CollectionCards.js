@@ -59,11 +59,11 @@ export default function CollectionCards({ page, collections, concepts, ui }) {
                   <p className="text-[11px] tracking-[0.3em] text-white/70 uppercase">{c.sub}</p>
                   <div className="mt-2 flex items-end justify-between gap-6">
                     <div>
-                      <h3 className="font-serif text-[2rem] leading-tight sm:text-[2.4rem]">
+                      <h3 className="font-serif text-[1.75rem] leading-tight min-[390px]:text-[2rem] sm:text-[2.4rem]">
                         {c.name}
                       </h3>
                       {concept && (
-                        <p className="mt-2 text-sm text-white/80">
+                        <p className="mt-2 text-left text-sm text-white/80">
                           {page.viewConcept}: <span className="text-blush-200">{concept.name}</span>
                         </p>
                       )}

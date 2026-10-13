@@ -15,11 +15,14 @@ export default function Process({ process, tone = "cream" }) {
       <Container wide>
         <SectionHeading eyebrow={process.eyebrow} title={process.title} />
 
-        <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <p className="mt-6 text-[11px] tracking-[0.25em] text-ink-muted uppercase sm:hidden">
+          Vuốt ngang để xem 4 bước →
+        </p>
+        <ol className="-mx-5 mt-4 no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:mx-0 sm:mt-12 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
           {process.steps.map((s, i) => (
             <li
               key={s.n}
-              className="reveal group relative overflow-hidden rounded-[1.5rem] bg-blush-100 lg:even:translate-y-8"
+              className="reveal group relative w-[80vw] max-w-[340px] shrink-0 snap-center overflow-hidden rounded-[1.5rem] bg-blush-100 sm:w-auto sm:max-w-none lg:even:translate-y-8"
               style={{ "--reveal-delay": `${i * 120}ms` }}
             >
               <div className="relative aspect-[4/5]">

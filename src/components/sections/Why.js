@@ -9,20 +9,24 @@ export default function Why({ why, tone = "cream" }) {
     <section className={cn("relative overflow-hidden section-y", toneBg[tone])}>
       <Container wide>
         <SectionHeading eyebrow={why.eyebrow} title={why.title} align="center" />
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
           {why.items.map((item, i) => {
             const Icon = iconByName[item.icon];
             return (
               <li
                 key={item.title}
-                className="reveal group rounded-[1.5rem] border border-rose/15 bg-white/70 p-7 shadow-card backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:border-rose/40 hover:shadow-soft lg:even:translate-y-6"
+                className="reveal group flex items-start gap-4 rounded-[1.5rem] border border-rose/15 bg-white/70 p-5 shadow-card backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:border-rose/40 hover:shadow-soft sm:block sm:p-7 lg:even:translate-y-6"
                 style={{ "--reveal-delay": `${i * 100}ms` }}
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-blush-100 text-rose-deep transition-colors group-hover:bg-rose group-hover:text-white">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blush-100 text-rose-deep transition-colors group-hover:bg-rose group-hover:text-white sm:h-12 sm:w-12">
                   <Icon className="h-5 w-5" />
                 </span>
-                <h3 className="mt-5 font-serif text-2xl text-ink">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.desc}</p>
+                <div>
+                  <h3 className="font-serif text-xl text-ink sm:mt-5 sm:text-2xl">{item.title}</h3>
+                  <p className="mt-1 text-left text-sm leading-relaxed text-ink-soft sm:mt-2 sm:text-justify">
+                    {item.desc}
+                  </p>
+                </div>
               </li>
             );
           })}
