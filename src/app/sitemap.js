@@ -3,7 +3,7 @@ import { concepts, collections } from "@/data/site";
 
 export default function sitemap() {
   const base = siteConfig.url;
-  const pages = ["", "/gioi-thieu", "/concept", "/bo-suu-tap"];
+  const pages = ["", "/concept", "/bo-suu-tap"];
   return [
     ...pages.map((p) => ({
       url: base + p,

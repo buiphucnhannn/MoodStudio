@@ -2,15 +2,15 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Petals from "@/components/fx/Petals";
 import { Check, ArrowRight } from "@/components/ui/Icons";
-import { cn, vnd } from "@/lib/utils";
+import { cn, vnd, toneBg } from "@/lib/utils";
 
 /**
  * Bảng giá theo gói: 3 thẻ, gói nổi bật ở giữa nền mận tối nhô cao hơn; bấm nút → popup đặt lịch chọn sẵn gói.
  * Bên dưới là bảng dịch vụ thêm.
  */
-export default function Pricing({ pricing, ui, showAddons = true }) {
+export default function Pricing({ pricing, ui, showAddons = true, tone = "cream" }) {
   return (
-    <section id="pricing" className="relative overflow-hidden bg-blush-50 py-16 lg:py-24">
+    <section id="pricing" className={cn("relative overflow-hidden section-y", toneBg[tone])}>
       <Petals count={4} />
       <Container wide className="relative">
         <SectionHeading
@@ -91,20 +91,36 @@ export default function Pricing({ pricing, ui, showAddons = true }) {
         </div>
 
         {showAddons && (
-          <div className="reveal mx-auto mt-14 max-w-3xl" style={{ "--reveal-delay": "200ms" }}>
-            <h3 className="text-center font-serif text-2xl text-ink">Dịch vụ thêm</h3>
-            <dl className="mt-5 divide-y divide-rose/15 rounded-[1.5rem] border border-rose/15 bg-white/70 px-6 backdrop-blur">
+          // Dịch vụ thêm: rộng bằng hàng 3 gói phía trên — tiêu đề trái / ghi chú phải, 4 thẻ nhỏ một hàng
+          <div className="reveal mt-16 lg:mt-20" style={{ "--reveal-delay": "200ms" }}>
+            <div className="flex flex-col gap-2 border-t border-rose/20 pt-8 md:flex-row md:items-center md:justify-between">
+              <h3 className="font-serif text-[1.8rem] leading-tight text-ink">Dịch vụ thêm</h3>
+              <p className="max-w-md text-xs text-ink-muted md:text-right">{pricing.note}</p>
+            </div>
+            <dl className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {pricing.addons.map((a) => (
                 <div
                   key={a.name}
-                  className="flex items-center justify-between gap-4 py-3.5 text-sm"
+                  className="flex flex-col justify-between gap-4 rounded-[1.25rem] border border-rose/15 bg-white/70 p-6 backdrop-blur transition-colors hover:border-rose/40"
                 >
-                  <dt className="text-ink-soft">{a.name}</dt>
-                  <dd className="font-medium whitespace-nowrap text-ink">{a.price}</dd>
+                  <dt className="text-sm leading-relaxed text-ink-soft">{a.name}</dt>
+                  <dd className="font-serif text-2xl text-ink">
+                    {a.contact ? (
+                      // "Liên hệ": mở popup đặt lịch / liên hệ; rê chuột chỉ đổi màu chữ
+                      <button
+                        type="button"
+                        data-booking
+                        className="cursor-pointer text-left transition-colors duration-300 hover:text-rose-deep"
+                      >
+                        {a.price}
+                      </button>
+                    ) : (
+                      a.price
+                    )}
+                  </dd>
                 </div>
               ))}
             </dl>
-            <p className="mt-4 text-center text-xs text-ink-muted">{pricing.note}</p>
           </div>
         )}
       </Container>

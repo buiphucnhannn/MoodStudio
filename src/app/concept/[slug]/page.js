@@ -49,7 +49,7 @@ export default function ConceptDetailPage({ params }) {
 // Khung giữ chỗ cùng chiều cao hero để không giật bố cục trong lúc nội dung theo URL đang tải
 function ConceptSkeleton() {
   return (
-    <section className="relative min-h-[80vh] overflow-hidden bg-cream bg-glow pt-32 sm:pt-40">
+    <section className="relative min-h-[calc(var(--screen)*0.8)] overflow-hidden bg-cream bg-glow pt-32 sm:pt-40">
       <Container wide className="grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
         <div className="space-y-5">
           <div className="h-3 w-40 rounded-full bg-blush-100" />
@@ -179,29 +179,28 @@ async function ConceptContent({ params }) {
         </Container>
       </section>
 
-      <section className="bg-blush-50 py-16 lg:py-24">
+      <section className="bg-blush-50 section-y">
         <Container wide>
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="reveal eyebrow">Album liên quan</p>
-              <h2
-                className="reveal mt-3 h-display text-[2rem] sm:text-[2.6rem]"
-                style={{ "--reveal-delay": "80ms" }}
-              >
-                {album.name}
-              </h2>
-              <p
-                className="reveal mt-3 max-w-xl text-sm text-ink-soft"
-                style={{ "--reveal-delay": "160ms" }}
-              >
-                {album.desc}
-              </p>
-            </div>
+          {/* Lưới 2 cột: nút nằm cùng hàng với tiêu đề (hàng 2) và căn giữa theo chiều dọc → tâm nút ngang tâm tiêu đề */}
+          <div className="grid gap-x-10 md:grid-cols-[1fr_auto]">
+            <p className="reveal eyebrow">Album liên quan</p>
+            <h2
+              className="reveal mt-3 h-display text-[2rem] sm:text-[2.6rem] md:col-start-1"
+              style={{ "--reveal-delay": "80ms" }}
+            >
+              {album.name}
+            </h2>
+            <p
+              className="reveal mt-3 max-w-xl text-sm text-ink-soft md:col-start-1"
+              style={{ "--reveal-delay": "160ms" }}
+            >
+              {album.desc}
+            </p>
             <Button
               href={`/bo-suu-tap/${album.slug}`}
               variant="outline"
               arrow
-              className="reveal shrink-0"
+              className="reveal mt-6 justify-self-start md:col-start-2 md:row-start-2 md:mt-3 md:self-center"
               style={{ "--reveal-delay": "200ms" }}
             >
               {ui.viewAlbum} · {album.images.length} {ui.photos}
@@ -221,8 +220,8 @@ async function ConceptContent({ params }) {
       </section>
 
       {/* Tóm tắt giá: 3 gói một dòng, bấm → trang chủ cuộn tới bảng giá đầy đủ */}
-      <section className="bg-cream pt-16 lg:pt-24">
-        <Container wide>
+      <section className="bg-cream section-y">
+        <Container wide className="space-y-6">
           <div className="reveal flex flex-col gap-6 rounded-[1.75rem] border border-rose/15 bg-white/70 p-7 backdrop-blur lg:flex-row lg:items-center lg:justify-between lg:p-9">
             <div className="max-w-sm">
               <p className="eyebrow">{pricing.eyebrow}</p>
@@ -249,11 +248,7 @@ async function ConceptContent({ params }) {
               Xem bảng giá đầy đủ
             </Button>
           </div>
-        </Container>
-      </section>
 
-      <section className="bg-cream py-12">
-        <Container wide>
           <Link
             href={`/concept/${next.slug}`}
             className="group relative block overflow-hidden rounded-[1.75rem] bg-plum"

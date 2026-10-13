@@ -6,7 +6,7 @@ import Container from "@/components/ui/Container";
 import Pic from "@/components/ui/Pic";
 import Lightbox from "@/components/ui/Lightbox";
 import useScrollProgress from "@/hooks/useScrollProgress";
-import { cn } from "@/lib/utils";
+import { cn, toneBg } from "@/lib/utils";
 import { ArrowRight } from "@/components/ui/Icons";
 
 /**
@@ -15,7 +15,8 @@ import { ArrowRight } from "@/components/ui/Icons";
  * 2. Desktop cao hơn 1080px (.stack-only): không ghim — kéo chuột để lướt.
  * 3. Mobile: tiêu đề trên, dải vuốt ngang bên dưới.
  */
-export default function Moments({ moments, ui, allHref, photosCount }) {
+export default function Moments({ moments, ui, allHref, photosCount, tone = "cream" }) {
+  const bg = toneBg[tone];
   const ref = useRef(null);
   const trackRef = useRef(null);
   const scrollerRef = useRef(null);
@@ -123,7 +124,7 @@ export default function Moments({ moments, ui, allHref, photosCount }) {
   const endCardEl = () => (
     <Link
       href={allHref}
-      className="group flex h-[calc(var(--screen)*0.42)] w-[24vw] max-w-[340px] shrink-0 flex-col items-center justify-center rounded-[1.5rem] border border-rose/20 bg-blush-50 text-center transition hover:bg-ink hover:text-white"
+      className="group flex h-[calc(var(--screen)*0.42)] w-[24vw] max-w-[340px] shrink-0 flex-col items-center justify-center rounded-[1.5rem] border border-rose/20 bg-white/70 text-center transition hover:bg-ink hover:text-white"
     >
       <p className="font-serif text-3xl">{ui.viewAll}</p>
       <p className="mt-1 text-xs opacity-70">
@@ -137,7 +138,7 @@ export default function Moments({ moments, ui, allHref, photosCount }) {
 
   return (
     <div id="moments">
-      <section ref={ref} className="pin-only relative h-[calc(var(--screen)*3.2)] bg-cream">
+      <section ref={ref} className={cn("pin-only relative h-[calc(var(--screen)*3.2)]", bg)}>
         <div className="sticky top-0 flex h-[var(--screen)] items-center overflow-hidden">
           <div
             ref={trackRef}
@@ -151,7 +152,7 @@ export default function Moments({ moments, ui, allHref, photosCount }) {
         </div>
       </section>
 
-      <section className="stack-only hidden screen items-center bg-cream py-16 lg:flex">
+      <section className={cn("stack-only hidden screen items-center py-16 lg:flex", bg)}>
         <Container wide>
           <div
             ref={scrollerRef}
@@ -171,7 +172,7 @@ export default function Moments({ moments, ui, allHref, photosCount }) {
         </Container>
       </section>
 
-      <section className="bg-cream py-16 lg:hidden">
+      <section className={cn("section-y lg:hidden", bg)}>
         <div className="px-5">
           <p className="reveal eyebrow">{moments.eyebrow}</p>
           <h2 className="reveal mt-3 h-display text-[2.1rem]" style={{ "--reveal-delay": "100ms" }}>

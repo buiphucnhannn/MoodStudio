@@ -3,15 +3,16 @@ import Container from "@/components/ui/Container";
 import Pic from "@/components/ui/Pic";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { ArrowRight } from "@/components/ui/Icons";
+import { cn, toneBg } from "@/lib/utils";
 
 /**
  * "Chọn theo dịp": 5 thẻ nhỏ gợi ý concept theo dịp (sinh nhật, Tết, profile…). Mỗi thẻ có ảnh tròn
  * của concept tương ứng và cuộn tới concept đó trong danh sách phía trên (anchor #slug).
  */
-export default function MoodPicker({ picker, concepts }) {
+export default function MoodPicker({ picker, concepts, tone = "cream" }) {
   const byslug = (slug) => concepts.find((c) => c.slug === slug);
   return (
-    <section className="bg-blush-50 py-16 lg:py-24">
+    <section className={cn("section-y", toneBg[tone])}>
       <Container wide>
         <SectionHeading eyebrow={picker.eyebrow} title={picker.title} align="center" />
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">

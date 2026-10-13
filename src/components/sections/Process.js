@@ -1,15 +1,16 @@
 import Container from "@/components/ui/Container";
 import Pic from "@/components/ui/Pic";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { cn, toneBg } from "@/lib/utils";
 
 /**
  * Hành trình một buổi chụp: 4 bước, thẻ ảnh dọc so le (thẻ chẵn lệch xuống 2rem).
  */
-export default function Process({ process }) {
+export default function Process({ process, tone = "cream" }) {
   return (
     <section
       id="process"
-      className="relative isolate overflow-hidden bg-cream pt-16 pb-20 lg:pt-20 lg:pb-32"
+      className={cn("relative isolate overflow-hidden section-y lg:pb-32", toneBg[tone])}
     >
       <Container wide>
         <SectionHeading eyebrow={process.eyebrow} title={process.title} />

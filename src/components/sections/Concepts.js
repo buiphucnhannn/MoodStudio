@@ -22,16 +22,18 @@ export default function Concepts({ concepts, ui, heading }) {
       className="relative flex screen flex-col justify-center overflow-hidden bg-blush-50 py-16 lg:py-14"
     >
       <Container wide>
-        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <p className="reveal eyebrow">{heading.eyebrow}</p>
-            <SplitText
-              text={heading.title}
-              accent={heading.accent}
-              className="mt-4 h-display text-[2.2rem] sm:text-[2.8rem] lg:text-[3.3rem]"
-            />
-          </div>
-          <div className="reveal flex items-center gap-6" style={{ "--reveal-delay": "150ms" }}>
+        {/* Lưới 2 cột: cụm gợi ý + nút nằm cùng hàng với tiêu đề, căn giữa theo chiều dọc */}
+        <div className="grid gap-x-10 md:grid-cols-[1fr_auto]">
+          <p className="reveal eyebrow">{heading.eyebrow}</p>
+          <SplitText
+            text={heading.title}
+            accent={heading.accent}
+            className="mt-4 max-w-2xl h-display text-[2.2rem] sm:text-[2.8rem] md:col-start-1 lg:text-[3.3rem]"
+          />
+          <div
+            className="reveal mt-5 flex items-center gap-6 md:col-start-2 md:row-start-2 md:mt-4 md:self-center"
+            style={{ "--reveal-delay": "150ms" }}
+          >
             <p className="hidden max-w-xs text-sm text-ink-soft lg:block">{ui.hover}</p>
             <Button href="/concept" arrow>
               {ui.viewAll}

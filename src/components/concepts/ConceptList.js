@@ -3,19 +3,19 @@ import Container from "@/components/ui/Container";
 import Pic from "@/components/ui/Pic";
 import SplitText from "@/components/fx/SplitText";
 import { ArrowRight, Check } from "@/components/ui/Icons";
-import { cn } from "@/lib/utils";
+import { cn, toneBg } from "@/lib/utils";
 
 /**
  * 5 concept: mỗi concept một hàng, ảnh dọc và chữ xen kẽ trái/phải (editorial zig-zag),
  * số thứ tự lớn mờ phía sau, 3 điểm nổi bật + nút Chọn concept (popup chọn sẵn) / Xem chi tiết / Xem album.
  */
-export default function ConceptList({ concepts, list, collections }) {
+export default function ConceptList({ concepts, list, collections, tone = "blush" }) {
   const albumName = (slug) => collections.find((c) => c.slug === slug)?.name;
 
   return (
     <section
       id="danh-sach"
-      className="relative isolate overflow-hidden bg-cream py-16 lg:pt-24 lg:pb-20"
+      className={cn("relative isolate overflow-hidden section-y", toneBg[tone])}
     >
       <Container wide>
         <div className="max-w-2xl">

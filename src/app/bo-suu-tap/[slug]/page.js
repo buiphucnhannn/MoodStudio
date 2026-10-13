@@ -44,7 +44,7 @@ export default function CollectionDetailPage({ params }) {
 
 function Skeleton() {
   return (
-    <section className="min-h-[80vh] bg-cream bg-glow pt-32 sm:pt-40">
+    <section className="min-h-[calc(var(--screen)*0.8)] bg-cream bg-glow pt-32 sm:pt-40">
       <Container wide className="grid gap-12 lg:grid-cols-[1fr_1fr]">
         <div className="aspect-[4/5] w-full rounded-[2rem] bg-blush-100" />
         <div className="space-y-5 lg:pt-10">
@@ -185,19 +185,21 @@ async function CollectionContent({ params }) {
         </Container>
       </section>
 
-      <section className="bg-blush-50 py-16 lg:py-24">
+      <section className="bg-blush-50 section-y">
         <Container wide>
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="reveal eyebrow">{d.galleryEyebrow}</p>
-              <h2
-                className="reveal mt-3 h-display text-[2rem] sm:text-[2.6rem]"
-                style={{ "--reveal-delay": "80ms" }}
-              >
-                {d.galleryTitle} · {c.images.length} {ui.photos}
-              </h2>
-            </div>
-            <p className="reveal text-xs text-ink-muted" style={{ "--reveal-delay": "160ms" }}>
+          {/* gợi ý bên phải cùng hàng với tiêu đề, căn giữa theo chiều dọc (giống các hàng tiêu đề có nút) */}
+          <div className="grid gap-x-10 md:grid-cols-[1fr_auto]">
+            <p className="reveal eyebrow">{d.galleryEyebrow}</p>
+            <h2
+              className="reveal mt-3 h-display text-[2rem] sm:text-[2.6rem] md:col-start-1"
+              style={{ "--reveal-delay": "80ms" }}
+            >
+              {d.galleryTitle} · {c.images.length} {ui.photos}
+            </h2>
+            <p
+              className="reveal mt-3 text-xs text-ink-muted md:col-start-2 md:row-start-2 md:self-center"
+              style={{ "--reveal-delay": "160ms" }}
+            >
               {d.galleryHint}
             </p>
           </div>
@@ -213,7 +215,7 @@ async function CollectionContent({ params }) {
         </Container>
       </section>
 
-      <section className="bg-cream py-12">
+      <section className="bg-cream section-y">
         <Container wide>
           <Link
             href={`/bo-suu-tap/${next.slug}`}

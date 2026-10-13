@@ -1,11 +1,12 @@
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { iconByName } from "@/components/ui/Icons";
+import { cn, toneBg } from "@/lib/utils";
 
 // Vì sao chọn MOOD: 4 thẻ USP, icon trong vòng tròn hồng, thẻ chẵn lệch xuống cho nhịp điệu.
-export default function Why({ why }) {
+export default function Why({ why, tone = "cream" }) {
   return (
-    <section className="relative overflow-hidden bg-cream py-16 lg:py-24">
+    <section className={cn("relative overflow-hidden section-y", toneBg[tone])}>
       <Container wide>
         <SectionHeading eyebrow={why.eyebrow} title={why.title} align="center" />
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

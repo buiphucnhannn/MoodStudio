@@ -3,17 +3,20 @@ import Pic from "@/components/ui/Pic";
 import Polaroid from "@/components/ui/Polaroid";
 import Parallax from "@/components/fx/Parallax";
 import Button from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
+import { cn, toneBg } from "@/lib/utils";
 
 /**
  * Giới thiệu: câu tuyên ngôn lớn kiểu serif với các từ hiện dần, ảnh lớn parallax bên phải,
  * 2 polaroid xoè nhẹ và 3 con số nổi bật.
  */
-export default function About({ about, ui, moreHref }) {
+export default function About({ about, ui, moreHref, tone = "cream" }) {
   return (
     <section
       id="about"
-      className="relative flex screen items-center overflow-hidden bg-cream py-16 lg:py-14"
+      className={cn(
+        "relative flex screen items-center overflow-hidden py-16 lg:py-14",
+        toneBg[tone],
+      )}
     >
       <Container wide className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         <div>

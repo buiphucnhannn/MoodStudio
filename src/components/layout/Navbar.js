@@ -110,7 +110,10 @@ export default function Navbar({ nav, ui, phone, phoneRaw }) {
             data-booking
             className={cn(
               "group hidden items-center gap-3 rounded-full py-1.5 pr-1.5 pl-5 text-[13px] font-medium transition-all duration-300 md:inline-flex",
-              dark ? "bg-white text-ink hover:bg-blush-50" : "bg-ink text-white hover:bg-plum",
+              dark
+                ? "bg-white text-ink hover:bg-blush-50"
+                : // màu ghi trực tiếp (= --color-mauve / mauve-deep) để không phụ thuộc cache theme Tailwind khi dev
+                  "bg-[#8a5872] text-white hover:bg-[#734760]",
             )}
           >
             {ui.book}

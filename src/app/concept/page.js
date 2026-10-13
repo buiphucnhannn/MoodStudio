@@ -23,7 +23,7 @@ export default function ConceptsPage() {
       <ConceptsHero hero={conceptsPage.hero} ui={ui} />
       <ConceptList concepts={concepts} list={conceptsPage.list} collections={collections} />
       <MoodPicker picker={conceptsPage.picker} concepts={concepts} />
-      <Faq faqs={faqs} />
+      <Faq faqs={faqs} tone="blush" />
       <CollageCta cta={conceptsPage.cta} site={siteConfig} ui={ui} />
     </>
   );

@@ -12,7 +12,7 @@ export default function CollectionCards({ page, collections, concepts, ui }) {
   const conceptOf = (slug) => concepts.find((c) => c.slug === slug);
 
   return (
-    <section className="bg-cream py-16 lg:py-24">
+    <section className="bg-cream section-y">
       <Container wide>
         <SectionHeading
           eyebrow={page.albumsEyebrow}

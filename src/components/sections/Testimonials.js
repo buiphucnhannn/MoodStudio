@@ -1,11 +1,12 @@
 import Container from "@/components/ui/Container";
 import Pic from "@/components/ui/Pic";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { cn, toneBg } from "@/lib/utils";
 
 // Cảm nhận khách hàng: 3 thẻ, dấu ngoặc kép serif lớn, avatar tròn.
-export default function Testimonials({ testimonials }) {
+export default function Testimonials({ testimonials, tone = "cream" }) {
   return (
-    <section className="relative overflow-hidden bg-blush-50 py-16 lg:py-24">
+    <section className={cn("relative overflow-hidden section-y", toneBg[tone])}>
       <Container wide>
         <SectionHeading eyebrow={testimonials.eyebrow} title={testimonials.title} align="center" />
         <div className="mt-12 grid gap-6 md:grid-cols-3">

@@ -31,6 +31,10 @@
   --color-ink-muted: #96878c;
   --color-plum: #3b2731;
 
+  /* tím mận phấn — nút nổi bật trên nền sáng (CTA header): mềm hơn đen, vẫn đủ tương phản với chữ trắng */
+  --color-mauve: #8a5872;
+  --color-mauve-deep: #734760;
+
   --shadow-soft: 0 24px 60px -24px rgb(59 39 49 / 0.25);
   --shadow-card: 0 10px 30px -12px rgb(59 39 49 / 0.18);
   --shadow-polaroid: 0 18px 40px -18px rgb(59 39 49 / 0.35);
@@ -171,6 +175,17 @@ html.lenis body {
     min-height: var(--screen);
   }
 }
+/* Khoảng cách trên/dưới CHUẨN cho mọi section nội dung (không phải hero / section "một màn hình").
+   Dùng chung một giá trị để nhịp điệu các trang đều nhau: 64px → 80px → 96px. */
+@utility section-y {
+  padding-block: 4rem;
+  @media (min-width: 640px) {
+    padding-block: 5rem;
+  }
+  @media (min-width: 1024px) {
+    padding-block: 6rem;
+  }
+}
 @utility no-scrollbar {
   scrollbar-width: none;
   &::-webkit-scrollbar {
@@ -261,6 +276,34 @@ html.lenis body {
   to {
     transform: scaleX(1);
   }
+}
+/* Màn chào: chữ trồi lên từ dưới khe che */
+@keyframes riseIn {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: none;
+  }
+}
+/* Màn chào kéo lên → header & nội dung trang trồi lên từ dưới, rõ dần (chạy 1 lần khi tải trang).
+   Trễ 250ms để bắt đầu khi mép cong của màn vừa đi qua; class .page-rise do Preloader thêm rồi gỡ. */
+@keyframes pageRise {
+  from {
+    opacity: 0;
+    transform: translateY(90px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+header.page-rise,
+main.page-rise {
+  animation: pageRise 1.3s var(--ease-out-expo) 0.25s both;
+}
+header.page-rise {
+  animation-delay: 0.45s;
 }
 @keyframes fadeIn {
   from {
@@ -379,6 +422,30 @@ html.lenis body {
   blockquote,
   dd {
     text-wrap: pretty;
+  }
+
+  /* Đoạn văn căng đều 2 bên (justify) trên toàn site.
+     - Đoạn 1 dòng (eyebrow, chú thích) không đổi: justify chỉ giãn các dòng KHÔNG phải dòng cuối.
+     - Trong khối căn giữa (.text-center): vẫn căng đều nhưng dòng cuối nằm giữa → hai mép gọn, không lệch.
+     - Hero trang chủ căn giữa ở mobile, căn trái từ lg → dòng cuối trở về căn trái ở lg.
+     Class text-left / text-center đặt trực tiếp trên <p> (lớp utilities) vẫn thắng quy tắc này khi cần. */
+  p,
+  blockquote {
+    text-align: justify;
+  }
+  .text-center :is(p, blockquote) {
+    text-align-last: center;
+  }
+  @media (min-width: 1024px) {
+    .lg\:text-left :is(p, blockquote) {
+      text-align-last: auto;
+    }
+  }
+  /* Nhãn (eyebrow, chữ in hoa giãn chữ) không phải đoạn văn: khi xuống 2 dòng mà căng đều sẽ giãn rất thưa
+     → giữ căn lề theo khối cha. */
+  :is(p, blockquote):is(.eyebrow, .uppercase) {
+    text-align: inherit;
+    text-align-last: inherit;
   }
 }
 

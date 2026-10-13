@@ -88,21 +88,6 @@ export default function CollectionsHero({ hero, collections, ui }) {
         >
           {hero.desc}
         </p>
-        <ul className="reveal mt-7 flex flex-wrap gap-2" style={{ "--reveal-delay": "350ms" }}>
-          {collections.map((c) => (
-            <li key={c.slug}>
-              <Link
-                href={`/bo-suu-tap/${c.slug}`}
-                className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[13px] text-white backdrop-blur transition hover:bg-white hover:text-ink"
-              >
-                {c.name}
-                <span className="text-[11px] opacity-70">
-                  {c.images.length} {ui.photos}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
       </Container>
     </section>
   );

@@ -25,8 +25,8 @@ npm run build && npm start
 
 | Chức năng brief            | Đường dẫn                 | Ghi chú                                                     |
 | -------------------------- | ------------------------- | ----------------------------------------------------------- |
-| Trang chủ                  | `/`                       | Hero → Marquee → Giới thiệu → Concept → USP → Bộ sưu tập → **Bảng giá** → Quy trình → Cảm nhận → **Liên hệ** |
-| Giới thiệu                 | `/gioi-thieu`             |                                                             |
+| Trang chủ                  | `/`                       | Hero → Marquee → **Về MOOD** (`/#about`) → Concept → USP → Bộ sưu tập → **Bảng giá** → Quy trình → Cảm nhận → **Liên hệ** |
+| Giới thiệu                 | `/#about`                 | section "Về MOOD" trên trang chủ (menu "Về MOOD")           |
 | Danh sách concept          | `/concept`                | trang riêng: hero 3 ảnh so le → 5 concept zig-zag → chọn theo dịp → FAQ → CTA ghép ảnh |
 | Chi tiết concept           | `/concept/[slug]`         | mô tả, điểm nổi bật, album liên quan, tóm tắt giá, nút **Chọn concept** |
 | Bộ sưu tập ảnh             | `/bo-suu-tap`, `/bo-suu-tap/[slug]` | danh sách: hero nền cột ảnh trôi + thẻ bộ sưu tập; chi tiết: hero tạp chí, album đầy đủ + lightbox, bộ tiếp theo |
@@ -48,7 +48,7 @@ src/
 ├── app/
 │   ├── layout.js            font, metadata, JSON-LD, Navbar/Footer, Lenis, popup đặt lịch
 │   ├── page.js              trang chủ
-│   ├── gioi-thieu/ concept/ concept/[slug]/ bo-suu-tap/ bo-suu-tap/[slug]/
+│   ├── concept/ concept/[slug]/ bo-suu-tap/ bo-suu-tap/[slug]/
 │   ├── admin/dat-lich/      trang quản lý yêu cầu (client, cần mật khẩu)
 │   ├── api/booking/route.js POST (khách gửi) · GET/PATCH (admin, header x-admin-key)
 │   ├── globals.css          Tailwind v4 @theme (màu, font, animation) + reveal/split/marquee/petal
@@ -91,6 +91,18 @@ src/
 - **Concept**: accordion ngang (rê chuột nở cột); mobile vuốt ngang snap.
 - **Bộ sưu tập**: section ghim, dải ảnh chạy ngang theo chiều cuộn (viewport ≤ 1080px cao); màn cao hơn → kéo chuột.
 - `.reveal` / `.split` hiện dần khi cuộn tới (`hooks/useReveal.js`, Web Animations API).
+
+## 5b. Quy ước bố cục
+
+- **Khoảng cách section**: dùng utility `section-y` (64 → 80 → 96px theo màn hình) cho mọi section nội dung; hero và section
+  "một màn hình" (`screen`) giữ padding riêng. Không đặt `py-*` tuỳ ý cho section mới.
+- **Nền xen kẽ**: section dùng lại nhiều trang nhận prop `tone="cream" | "blush"`; trang ghép sao cho 2 section liền nhau
+  KHÁC màu (cùng màu → 2 khoảng padding cộng dồn thành khoảng trống lớn).
+- **Độ rộng**: mọi khối nội dung dùng `<Container wide>` (1440px) để mép trái/phải thẳng hàng giữa các section.
+- **Căng đều**: `<p>`, `<blockquote>` mặc định `text-align: justify` (globals.css); trong khối `text-center` dòng cuối căn giữa;
+  nhãn `.eyebrow` / `.uppercase` không căng. Muốn bỏ cho 1 đoạn: thêm `text-left`.
+- **Thu nhỏ trình duyệt (zoom 50–67%)**: chiều cao dùng `var(--screen)` (= viewport, tối đa 1080px) thay cho `vh`;
+  khối tràn viền dùng `bleed-cap` / `bleed-box` (tối đa 1920px) → bố cục giữ tỉ lệ như ở 100%.
 
 ## 6. Đặt lịch & quản lý yêu cầu
 

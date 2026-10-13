@@ -1,5 +1,16 @@
 import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { extendTailwindMerge } from "tailwind-merge";
+
+// tailwind-merge không biết các @utility tự định nghĩa trong globals.css. Mặc định nó đoán `bg-glow` là màu nền
+// → coi là xung đột và XOÁ `bg-cream` đứng trước (nền thành trong suốt). Khai báo đúng nhóm để không bị gộp nhầm.
+const twMerge = extendTailwindMerge({
+  extend: {
+    classGroups: {
+      "bg-image": ["bg-glow"],
+      "font-size": ["eyebrow"],
+    },
+  },
+});
 
 /** Gộp className và xử lý xung đột class Tailwind. */
 export function cn(...inputs) {
@@ -33,3 +44,7 @@ export const noOrphan = (text = "") => text.replace(/ (\S+)$/, " $1");
 
 // Định dạng tiền VND: 1500000 → "1.500.000đ"
 export const vnd = (n) => n.toLocaleString("vi-VN") + "đ";
+
+// Nền section theo "tông": trang ghép các section xen kẽ cream ↔ blush để 2 section liền nhau không cùng màu
+// (cùng màu → 2 khoảng padding cộng dồn, nhìn như một khoảng trống lớn).
+export const toneBg = { cream: "bg-cream", blush: "bg-blush-50" };

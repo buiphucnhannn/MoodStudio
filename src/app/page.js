@@ -36,12 +36,18 @@ export default function HomePage() {
     <>
       <Hero hero={hero} ui={ui} />
       <Marquee items={marquee} />
-      <About about={about} ui={ui} moreHref="/gioi-thieu" />
+      <About about={about} ui={ui} />
       <Concepts concepts={concepts} ui={ui} heading={conceptsHeading} />
       <Why why={why} />
-      <Moments moments={moments} ui={ui} allHref="/bo-suu-tap" photosCount={allPhotos.length} />
+      <Moments
+        tone="blush"
+        moments={moments}
+        ui={ui}
+        allHref="/bo-suu-tap"
+        photosCount={allPhotos.length}
+      />
       <Pricing pricing={pricing} ui={ui} />
-      <Process process={process} />
+      <Process process={process} tone="blush" />
       <Testimonials testimonials={testimonials} />
       <Contact contact={contact} site={siteConfig} ui={ui} />
     </>

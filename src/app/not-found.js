@@ -7,7 +7,7 @@ export const metadata = { title: ui.notFoundTitle };
 
 export default function NotFound() {
   return (
-    <section className="relative flex min-h-[80vh] items-center overflow-hidden bg-cream bg-glow pt-24">
+    <section className="relative flex min-h-[calc(var(--screen)*0.8)] items-center overflow-hidden bg-cream bg-glow pt-24">
       <Petals count={5} />
       <Container className="relative text-center">
         <p className="font-script text-5xl text-rose">404</p>

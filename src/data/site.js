@@ -7,7 +7,7 @@ const P = (group, n) => `/images/${group}/${group}-${String(n).padStart(2, "0")}
 
 // ---------- Điều hướng ----------
 export const nav = [
-  { label: "Giới thiệu", href: "/gioi-thieu" },
+  { label: "Về MOOD", href: "/#about" },
   { label: "Concept", href: "/concept" },
   { label: "Bộ sưu tập", href: "/bo-suu-tap" },
   // Bảng giá & Liên hệ là section trên trang chủ: link /#id → chuyển trang mượt rồi cuộn tới đúng chỗ
@@ -331,7 +331,7 @@ export const pricing = {
     { name: "Thêm concept / trang phục", price: "300.000đ" },
     { name: "Thêm người (chụp nhóm / đôi)", price: "250.000đ / người" },
     { name: "Retouch thêm", price: "50.000đ / ảnh" },
-    { name: "In ảnh / photobook", price: "Liên hệ" },
+    { name: "In ảnh / photobook", price: "Liên hệ", contact: true }, // contact: bấm mở popup đặt lịch / liên hệ
   ],
 };
 
@@ -583,18 +583,6 @@ export const galleryPage = {
       { src: P("co-phuc", 10), pos: "center 38%" },
     ],
   },
-};
-
-// ---------- Trang Giới thiệu ----------
-export const aboutPage = {
-  eyebrow: "Giới thiệu",
-  title: "Studio của những cô gái yêu cái đẹp",
-  desc: "MOOD Studio tại TP. Hồ Chí Minh — nơi concept, trang phục, bối cảnh và cảm xúc gặp nhau trong một khung hình.",
-  values: [
-    { title: "Feminine", desc: "Nữ tính, mềm mại trong màu sắc và bố cục." },
-    { title: "Elegant", desc: "Thanh lịch, tiết chế, tôn vẻ đẹp tự nhiên." },
-    { title: "Artistic", desc: "Mỗi bộ ảnh là một tác phẩm, không phải một tấm hình." },
-  ],
 };
 
 // ---------- Footer ----------
