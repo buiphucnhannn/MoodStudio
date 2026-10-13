@@ -1,44 +1,418 @@
 @import "tailwindcss";
 
-/* Design tokens — dùng trực tiếp như class Tailwind: bg-brand-600, text-muted, border-line... */
+/* ---------------------------------------------------------------------------
+ * Design tokens — MOOD Studio: hồng pastel · trắng kem · be. Feminine, Elegant, Artistic.
+ * Đổi màu/font tại đây; mọi class cream-*, blush-*, rose*, ink* sẽ tự cập nhật.
+ * ------------------------------------------------------------------------- */
 @theme {
-  --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif), Georgia, "Times New Roman", serif;
+  --font-script: var(--font-script), cursive;
 
-  --color-brand-50: #f5f3ff;
-  --color-brand-100: #ede9fe;
-  --color-brand-200: #ddd6fe;
-  --color-brand-300: #c4b5fd;
-  --color-brand-500: #8b5cf6;
-  --color-brand-600: #7c3aed;
-  --color-brand-700: #6d28d9;
-  --color-brand-800: #5b21b6;
+  /* nền kem */
+  --color-cream: #fbf6f2;
+  --color-cream-50: #fffcfa;
+  --color-cream-100: #f5ece5;
+  --color-cream-200: #eadbce;
 
-  --color-accent-100: #fce7f3;
-  --color-accent-500: #ec4899;
+  /* hồng pastel */
+  --color-blush-50: #fdf3f6;
+  --color-blush-100: #fae3ea;
+  --color-blush-200: #f4cbd8;
+  --color-blush-300: #ebadc2;
 
-  --color-canvas: #fafaf9; /* nền trang */
-  --color-surface: #ffffff; /* nền section / card */
-  --color-ink: #18181b; /* chữ chính */
-  --color-muted: #52525b; /* chữ phụ */
-  --color-line: #e4e4e7; /* viền */
+  /* điểm nhấn hoa hồng */
+  --color-rose: #d4809b;
+  --color-rose-deep: #b35d7b;
+
+  /* chữ: nâu mận ấm */
+  --color-ink: #2b2226;
+  --color-ink-soft: #5e5055;
+  --color-ink-muted: #96878c;
+  --color-plum: #3b2731;
+
+  --shadow-soft: 0 24px 60px -24px rgb(59 39 49 / 0.25);
+  --shadow-card: 0 10px 30px -12px rgb(59 39 49 / 0.18);
+  --shadow-polaroid: 0 18px 40px -18px rgb(59 39 49 / 0.35);
+
+  --tracking-eyebrow: 0.28em;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --animate-marquee: marquee 60s linear infinite;
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-kenburns: kenburns 9s ease-out forwards;
+  --animate-drift-up: drift-up 40s ease-in-out infinite alternate;
+  --animate-drift-down: drift-down 40s ease-in-out infinite alternate;
+  --animate-petal: petal var(--petal-duration, 14s) linear infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+
+  @keyframes drift-up {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-22%);
+    }
+  }
+  @keyframes drift-down {
+    from {
+      transform: translateY(-22%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  @keyframes kenburns {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
+  }
+  /* cánh hoa rơi: trôi xuống + lắc nhẹ + xoay */
+  @keyframes petal {
+    0% {
+      transform: translate3d(0, -10vh, 0) rotate(0deg);
+      opacity: 0;
+    }
+    8% {
+      opacity: var(--petal-opacity, 0.7);
+    }
+    50% {
+      transform: translate3d(var(--petal-sway, 40px), 45vh, 0) rotate(180deg);
+    }
+    92% {
+      opacity: var(--petal-opacity, 0.7);
+    }
+    100% {
+      transform: translate3d(calc(var(--petal-sway, 40px) * -0.6), 110vh, 0) rotate(360deg);
+      opacity: 0;
+    }
+  }
 }
 
+/* "Một màn hình" = chiều cao viewport nhưng tối đa 1080px */
+html {
+  -webkit-text-size-adjust: 100%;
+  --screen: min(100svh, 1080px);
+}
+
+/* Chặn tràn ngang; dùng clip (không phải hidden) để position: sticky vẫn chạy */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  @apply bg-cream font-sans text-ink antialiased;
+}
+
+::selection {
+  background: #f4cbd8;
+  color: #2b2226;
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ---------- Typography helpers ---------- */
+@utility eyebrow {
+  @apply text-[11px] font-medium tracking-eyebrow text-rose uppercase;
+}
+@utility h-display {
+  @apply font-serif leading-[1.04] font-medium tracking-[-0.01em] text-ink;
+}
+@utility polaroid {
+  @apply bg-white p-2 pb-7 shadow-polaroid;
+}
+@utility field {
+  @apply w-full rounded-xl border border-ink/10 bg-white px-4 py-3 text-sm text-ink transition outline-none placeholder:text-ink-muted focus:border-rose focus:ring-2 focus:ring-rose/20;
+}
+@utility panel {
+  @apply rounded-[2rem] sm:rounded-[2.5rem];
+}
+/* chỉ ép "một màn hình" từ lg; mobile/tablet co theo nội dung */
+@utility screen {
+  @media (min-width: 1024px) {
+    min-height: var(--screen);
+  }
+}
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+/* Khung ảnh vòm (arch) — nét đặc trưng của bố cục nữ tính */
+@utility arch {
+  border-radius: 999px 999px 1.5rem 1.5rem;
+}
+/* Nền kem có ánh hồng toả nhẹ */
+@utility bg-glow {
+  background-image:
+    radial-gradient(60% 50% at 80% 0%, rgb(244 203 216 / 0.55), transparent 70%),
+    radial-gradient(50% 40% at 0% 100%, rgb(234 219 206 / 0.6), transparent 70%);
+}
+
+/* ---------- Section ghim: chỉ ghim khi viewport ≤ 1080px cao ---------- */
+.pin-only {
+  display: none;
+}
+@media (min-width: 1024px) and (max-height: 1080px) {
+  .pin-only {
+    display: block;
+  }
+  .stack-only {
+    display: none !important;
+  }
+}
+
+/* ---------- Reveal on scroll (trạng thái ẩn ban đầu; animation do hooks/useReveal chạy) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  filter: blur(6px);
+  will-change: opacity, transform, filter;
+}
+.reveal[data-reveal="left"] {
+  transform: translateX(-32px);
+}
+.reveal[data-reveal="right"] {
+  transform: translateX(32px);
+}
+.reveal[data-reveal="scale"] {
+  transform: scale(0.94);
+}
+.reveal[data-reveal="clip"] {
+  transform: none;
+  filter: none;
+  opacity: 1;
+  clip-path: inset(12% 6% 12% 6% round 2rem);
+}
+
+/* ---------- SplitText: hiện từng từ / ký tự kiểu blur-in ---------- */
+.split .split-unit {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(0.35em);
+  transition:
+    opacity 0.7s var(--ease-out-expo),
+    filter 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
+  transition-delay: calc(var(--base, 0ms) + var(--i, 0) * var(--step, 45ms));
+}
+.split.is-visible .split-unit {
+  opacity: 1;
+  filter: blur(0);
+  transform: none;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+@keyframes loadbar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.hero-panel {
+  animation: heroIn 1.8s var(--ease-out-expo) both;
+  transform-origin: center;
+}
+
+/* ---------- Marquee ---------- */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 70s) linear infinite;
+}
+.marquee-track.reverse {
+  animation-direction: reverse;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ---------- Scrollbar nhẹ ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ebadc2;
+  border-radius: 10px;
+  border: 2px solid #fbf6f2;
+}
+::-webkit-scrollbar-track {
+  background: #fbf6f2;
+}
+
+/* Cormorant dùng số kiểu old-style → bật số thẳng hàng cho chữ serif */
+.font-serif,
+.h-display {
+  font-variant-numeric: lining-nums;
+}
+
+/* ---------- Chữ nổi trên ảnh ---------- */
+@utility text-legible {
+  text-shadow:
+    0 1px 2px rgb(0 0 0 / 0.45),
+    0 2px 12px rgb(0 0 0 / 0.35);
+}
+@utility text-legible-lg {
+  text-shadow:
+    0 1px 1px rgb(0 0 0 / 0.3),
+    0 2px 6px rgb(0 0 0 / 0.25),
+    0 8px 40px rgb(0 0 0 / 0.45);
+}
+
+/* ---------- Giới hạn chiều ngang cho khối tràn viền (zoom nhỏ / màn siêu rộng) ---------- */
+@utility bleed-cap {
+  margin-inline: auto;
+  max-width: 1920px;
+  @media (min-width: 1921px) {
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  }
+}
+@utility bleed-box {
+  margin-inline: auto;
+  max-width: 1920px;
+}
+
+/* ---------- Chống rớt chữ mồ côi ---------- */
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  h1,
+  h2,
+  h3,
+  h4,
+  .h-display,
+  figcaption {
+    text-wrap: balance;
   }
-
-  body {
-    @apply bg-canvas font-sans text-ink antialiased;
-  }
-
-  ::selection {
-    @apply bg-brand-200 text-brand-800;
+  p,
+  li,
+  blockquote,
+  dd {
+    text-wrap: pretty;
   }
 }
 
+/* ---------- Chuyển trang (PageTransition) ---------- */
+main {
+  transition:
+    opacity 0.2s var(--ease-out-expo),
+    transform 0.2s var(--ease-out-expo);
+}
+main.page-leave {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+main.page-enter {
+  animation: pageIn 0.45s var(--ease-out-expo) both;
+}
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  main.page-leave,
+  main.page-enter {
+    transform: none;
+  }
+  .animate-petal {
+    animation: none;
+    opacity: 0;
   }
 }
